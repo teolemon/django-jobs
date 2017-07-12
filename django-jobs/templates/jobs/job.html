@@ -10,7 +10,7 @@
 {% block text %}
 
 
-        <div class="post">
+        <div class="post" itemtype="http://schema.org/JobPosting">
             
             <div class="posttop">
                 <h4>Details for {{job.name}}</h4>
@@ -24,7 +24,7 @@
                 Job Name
             </th>
             <td>
-                {{job.name}}
+                <div itemprop="title">{{job.name}}</div>
             </td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@
                 Job Description
             </th>
             <td>
-                {{job.description}}
+                <div itemprop="description">{{job.description}}</div>
             </td>
         </tr>
         <tr>
@@ -40,7 +40,7 @@
                 Job Location
             </th>
             <td>
-                {{job.location}}
+                <div itemprop="jobLocation">{{job.location}}</div>
             </td>
         </tr>
         <tr>
@@ -66,14 +66,14 @@
     </table>
 
     <h5>Company Details</h5>
-    
+    <div itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization">
     <table>
         <tr>
             <th>
                 Company Name
             </th>
             <td>
-                {{job.poster_name}}
+                <span itemprop="name">{{job.poster_name}}</span>
             </td>
         </tr>
                 <tr>
@@ -100,7 +100,8 @@
                 {{job.other_info|linebreaks|urlize}}
             </td>
         </tr>        
-    </table>    
+    </table>  
+    </div>
     <br />
     {% if job.is_editable %}
       <a href="{{job.get_edit_url}}">Edit this</a>
